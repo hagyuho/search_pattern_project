@@ -29,7 +29,7 @@ public class ItemService {
 
     public List<ItemResponseDTO> findByCondition1(SearchDTO dto) {
         return itemRepository.findAll().stream()
-                .filter(p -> p.getCategory() == dto.getCategory() && p.getCountry() == dto.getCountry() && p.getPrice() == dto.getPrice() && p.getTitle() == dto.getTitle())
+                .filter(p -> p.getTitle().equals(dto.getTitle()))
                 .map(p -> new ItemResponseDTO(p))
                 .collect(Collectors.toList());
     }

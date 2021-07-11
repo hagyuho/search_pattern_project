@@ -27,10 +27,10 @@ public class ItemApiController {
      * @description : filter 이용해 조회조건 처리
      */
     @GetMapping("/api/v1/items/Condition1")
-    public List<ItemResponseDTO> findByCondition1(@RequestParam String title,
-                                                  @RequestParam String price,
-                                                  @RequestParam String country,
-                                                  @RequestParam Category category) {
+    public List<ItemResponseDTO> findByCondition1(@RequestParam(required=false) String title,
+                                                  @RequestParam(required=false) String price,
+                                                  @RequestParam(required=false) String country,
+                                                  @RequestParam(required=false) Category category) {
         SearchDTO dto = SearchDTO.builder().
                 title(title).
                 category(category).
@@ -44,10 +44,10 @@ public class ItemApiController {
      * @description : spec 이용해 조회조건 처리
      */
     @GetMapping("/api/v1/items/Condition2")
-    public List<ItemResponseDTO> findByCondition2(@RequestParam String title,
-                                                  @RequestParam String price,
-                                                  @RequestParam String country,
-                                                  @RequestParam Category category) {
+    public List<ItemResponseDTO> findByCondition2(@RequestParam(required=false) String title,
+                                                  @RequestParam(required=false) String price,
+                                                  @RequestParam(required=false) String country,
+                                                  @RequestParam(required=false) Category category) {
         SearchDTO dto = SearchDTO.builder().
                 title(title).
                 category(category).
@@ -61,10 +61,10 @@ public class ItemApiController {
      * @description : queryDSL 이용해 조회조건 처리리
     */
     @GetMapping("/api/v1/items/Condition3")
-    public List<ItemResponseDTO> findByCondition3(@RequestParam String title,
-                                                  @RequestParam String price,
-                                                  @RequestParam String country,
-                                                  @RequestParam Category category) {
+    public List<ItemResponseDTO> findByCondition3(@RequestParam(required=false) String title,
+                                                  @RequestParam(required=false) String price,
+                                                  @RequestParam(required=false) String country,
+                                                  @RequestParam(required=false) Category category) {
         SearchDTO dto = SearchDTO.builder().
                 title(title).
                 category(category).

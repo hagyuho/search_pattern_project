@@ -23,10 +23,10 @@ import org.springframework.web.context.WebApplicationContext;
 import java.util.List;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ItemApiControllerTest {
 
     @LocalServerPort
@@ -72,16 +72,12 @@ public class ItemApiControllerTest {
                 title(title).
                 build();
 
-        String url = "http://localhost:"+port+"/api/v1/items/Condition1";
-
-        //when
-        mvc.perform(get(url)
-                .contentType(MediaType.APPLICATION_JSON_UTF8)
-                .content(objectMapper.writeValueAsString(dto)))
-                .andExpect(status().isOk());
+        String url = "http://localhost:"+port+"/api/v1/items/Condition1?title="+title;
 
         //then
-        List<ItemResponseDTO> list = itemRepository.
+        mvc.perform(get(url))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0]").exists());
 
     }
 }
